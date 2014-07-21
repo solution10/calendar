@@ -96,4 +96,19 @@ class CalendarTests extends PHPUnit_Framework_TestCase
     {
         new Calendar('pineapple', 8, 2);
     }
+
+    public function testGetDateTime()
+    {
+        $c = new Calendar(2000, 1, 1);
+        $this->assertEquals('2000-01-01', $c->getCurrentDateTime()->format('Y-m-d'));
+    }
+
+    public function testSpecificDate()
+    {
+        $c = new Calendar(2000, 1, 1);
+        $this->assertTrue($c->isSpecificDate());
+
+        $c = new Calendar(2000, 1);
+        $this->assertFalse($c->isSpecificDate());
+    }
 }

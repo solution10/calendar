@@ -36,6 +36,11 @@ class Calendar
     protected $currentDateTime;
 
     /**
+     * @var     bool    Marks whether the calendar is set to a specific day or not. Used in rendering.
+     */
+    protected $specificDate = false;
+
+    /**
      * You can pass the current date in here:
      *
      * @param   bool|int    $year       Current year (4 digits; 2014)
@@ -61,6 +66,10 @@ class Calendar
      */
     public function setCurrentDate($year = false, $month = false, $day = false)
     {
+        // If the day is set, we're "hard-setting" the calendar to a day.
+        // Make a note of that Smithers.
+        $this->specificDate = ($day !== false);
+
         // Check that this date is valid by throwing it at DateTime
         $year = ($year === false) ? date('Y') : $year;
         $month = ($month === false) ? date('n') : $month;
@@ -99,5 +108,27 @@ class Calendar
             'month' => $this->currentMonth,
             'year' => $this->currentYear
         );
+    }
+
+    /**
+     * Returns the calendars current date as a DateTime object
+     *
+     * @return  DateTime
+     */
+    public function getCurrentDateTime()
+    {
+        return $this->currentDateTime;
+    }
+
+    /**
+     * Returns whether we have set the calendar to a specific date, or just
+     * defined it as a month/year or just year. This can be used in rendering
+     * to decide whether to highlight the current date or not.
+     *
+     * @return  bool
+     */
+    public function isSpecificDate()
+    {
+        return $this->specificDate;
     }
 }
