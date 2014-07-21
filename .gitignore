@@ -1,0 +1,11 @@
+# Filesystem crap
+.DS_Store
+
+# IDE crap
+.idea
+
+# Generated folders
+api/
+report/
+vendor/
+
