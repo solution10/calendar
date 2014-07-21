@@ -38,13 +38,13 @@ class Calendar
     /**
      * You can pass the current date in here:
      *
-     * @param   bool|int    $day        Current day of the month (ie; 15)
-     * @param   bool|int    $month      Current (numeric) month (ie February is 2)
      * @param   bool|int    $year       Current year (4 digits; 2014)
+     * @param   bool|int    $month      Current (numeric) month (ie February is 2)
+     * @param   bool|int    $day        Current day of the month (ie; 15)
      */
-    public function __construct($day = false, $month = false, $year = false)
+    public function __construct($year = false, $month = false, $day = false)
     {
-        $this->setCurrentDate($day, $month, $year);
+        $this->setCurrentDate($year, $month, $day);
     }
 
     /**
@@ -53,18 +53,19 @@ class Calendar
      * date, APART from the day which will default to the first, since months have variable
      * length.
      *
+     * @param   bool|int    $year       Current year (4 digits; 2014)
      * @param   bool|int    $day        Current day of the month (ie; 15)
      * @param   bool|int    $month      Current (numeric) month (ie February is 2)
-     * @param   bool|int    $year       Current year (4 digits; 2014)
      * @return  $this
      * @throws  Exception\Date          Thrown when date is invalid.
      */
-    public function setCurrentDate($day = false, $month = false, $year = false)
+    public function setCurrentDate($year = false, $month = false, $day = false)
     {
         // Check that this date is valid by throwing it at DateTime
-        $day = ($day === false) ? 1 : $day;
-        $month = ($month === false) ? date('n') : $month;
         $year = ($year === false) ? date('Y') : $year;
+        $month = ($month === false) ? date('n') : $month;
+        $day = ($day === false) ? 1 : $day;
+
 
         $combinedString = $year
             .'-'.str_pad($month, 2, '0', STR_PAD_LEFT)

@@ -15,7 +15,7 @@ class CalendarTests extends PHPUnit_Framework_TestCase
         $c = new Calendar(false, false, false);
         $this->assertInstanceOf('Solution10\\Calendar\\Calendar', $c);
 
-        $c = new Calendar(2, 7, 2014);
+        $c = new Calendar(2014, 7, 2);
         $this->assertInstanceOf('Solution10\\Calendar\\Calendar', $c);
     }
 
@@ -25,7 +25,7 @@ class CalendarTests extends PHPUnit_Framework_TestCase
      */
     public function testConstructBadDate()
     {
-        new Calendar(40, -1, 'orange');
+        new Calendar('orange', -1, 40);
     }
 
     /*
@@ -41,28 +41,28 @@ class CalendarTests extends PHPUnit_Framework_TestCase
             'year' => date('Y')
         ), $c->getCurrentDate());
 
-        $c = new Calendar(2, 7, 1988);
+        $c = new Calendar(1988, 7, 2);
         $this->assertEquals(array(
             'day' => 2,
             'month' => 7,
             'year' => 1988
         ), $c->getCurrentDate());
 
-        $c = new Calendar(false, 5, 2014);
+        $c = new Calendar(2014, 5, false);
         $this->assertEquals(array(
             'day' => 1,
             'month' => 5,
             'year' => 2014
         ), $c->getCurrentDate());
 
-        $c = new Calendar(21, false, 1066);
+        $c = new Calendar(1066, false, 21);
         $this->assertEquals(array(
             'day' => 21,
             'month' => date('n'),
             'year' => 1066
         ), $c->getCurrentDate());
 
-        $c = new Calendar(13, 10, false);
+        $c = new Calendar(false, 10, 13);
         $this->assertEquals(array(
             'day' => 13,
             'month' => 10,
@@ -76,7 +76,7 @@ class CalendarTests extends PHPUnit_Framework_TestCase
      */
     public function testSetBadDateDay()
     {
-        new Calendar(40, 8, 2000);
+        new Calendar(2000, 8, 40);
     }
 
     /**
@@ -85,7 +85,7 @@ class CalendarTests extends PHPUnit_Framework_TestCase
      */
     public function testSetBadDateMonth()
     {
-        new Calendar(2, 13, 2000);
+        new Calendar(2000, 13, 2);
     }
 
     /**
@@ -94,6 +94,6 @@ class CalendarTests extends PHPUnit_Framework_TestCase
      */
     public function testSetBadDateYear()
     {
-        new Calendar(2, 8, 'pineapple');
+        new Calendar('pineapple', 8, 2);
     }
 }
