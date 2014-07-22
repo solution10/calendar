@@ -113,6 +113,10 @@ class Month implements ResolutionInterface
      */
     public function buildCells()
     {
-        return array();
+        $cells = array();
+
+        // Right, where to begin?
+
+        return $cells;
     }
 }

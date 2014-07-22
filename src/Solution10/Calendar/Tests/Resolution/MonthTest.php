@@ -4,7 +4,6 @@ namespace Solution10\Calendar\Tests\Resolution;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Resolution\Month as MonthResolution;
-use Solution10\Calendar\Resolution\Month;
 
 /**
  * Class MonthTest
