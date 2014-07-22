@@ -162,6 +162,6 @@ class Calendar
      */
     public function getResolution()
     {
-        return $this;
+        return $this->resolution;
     }
 }

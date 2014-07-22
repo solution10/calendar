@@ -1,8 +1,8 @@
 # Solution10\Calendar
 
-Straightforward calendars, with events, for any templating system
+Straightforward calendars, with events, for any templating system.
 
-**WIP for the moment**
+**WIP for the moment, full docs to follow**
 
 ## PHP Requirements
 

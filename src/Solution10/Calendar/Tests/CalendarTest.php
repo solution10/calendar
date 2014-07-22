@@ -4,6 +4,7 @@ namespace Solution10\Calendar\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Calendar;
+use Solution10\Calendar\Resolution\Month as MonthResolution;
 
 class CalendarTests extends PHPUnit_Framework_TestCase
 {
@@ -110,5 +111,18 @@ class CalendarTests extends PHPUnit_Framework_TestCase
 
         $c = new Calendar(2000, 1);
         $this->assertFalse($c->isSpecificDate());
+    }
+
+    /*
+     * ------------------ Testing Resolution Management -----------------
+     */
+
+    public function testSetGetResolution()
+    {
+        $c = new Calendar();
+        $res = new MonthResolution($c->getCurrentDate());
+
+        $this->assertEquals($c, $c->setResolution($res));
+        $this->assertEquals($res, $c->getResolution());
     }
 }

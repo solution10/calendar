@@ -55,6 +55,6 @@ class Month implements ResolutionInterface
      */
     public function buildCells()
     {
-
+        return array();
     }
 }
