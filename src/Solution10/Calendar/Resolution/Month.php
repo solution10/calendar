@@ -27,7 +27,7 @@ class Month implements ResolutionInterface
     /**
      * @var     int     The number of months to show either side of the current month.
      */
-    protected $monthOverflow = 0;
+    protected $monthOverflow = array('left' => 0, 'right' => 0);
 
     /**
      * @var     bool    Whether to show the overflow days in a month or not.
@@ -44,8 +44,66 @@ class Month implements ResolutionInterface
         $this->currentDate = $currentDate;
     }
 
+    /*
+     * -------------------- Month Overflow -------------------
+     */
+
     /**
-     * Sets the number of months either side
+     * Sets the number of months either side of the current one.
+     * So if it's April, values of (1, 2) gives you March - April - May - June
+     *
+     * @param   int     $numLeft    Number to the left
+     * @param   int     $numRight   Number to the right
+     * @return  $this
+     */
+    public function setMonthOverflow($numLeft, $numRight)
+    {
+        $this->monthOverflow['left']    = (int)$numLeft;
+        $this->monthOverflow['right']   = (int)$numRight;
+        return $this;
+    }
+
+    /**
+     * Returns the month overflows we're using. Return value is an array with 'left'
+     * and 'right' keys.
+     *
+     * @return  array
+     */
+    public function getMonthOverflow()
+    {
+        return $this->monthOverflow;
+    }
+
+    /*
+     * ----------------- Days Overflow --------------------
+     */
+
+    /**
+     * Sets whether to show "overflow" days in months. These are days that
+     * fill-up the ends of the week from other months rather than displaying
+     * blank spaces.
+     *
+     * @param   bool    $useDaysOverflow    True for yes, false for no
+     * @return  $this
+     */
+    public function setDaysOverflow($useDaysOverflow)
+    {
+        $this->daysOverflow = (bool)$useDaysOverflow;
+        return $this;
+    }
+
+    /**
+     * Returns whether we are using day overflows or not
+     *
+     * @return  bool
+     */
+    public function getDaysOverflow()
+    {
+        return $this->daysOverflow;
+    }
+
+    /*
+     * --------------- Generating the Cells ------------------
      */
 
     /**

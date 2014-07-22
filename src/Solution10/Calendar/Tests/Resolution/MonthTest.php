@@ -4,6 +4,7 @@ namespace Solution10\Calendar\Tests\Resolution;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Resolution\Month as MonthResolution;
+use Solution10\Calendar\Resolution\Month;
 
 /**
  * Class MonthTest
@@ -28,16 +29,66 @@ class MonthTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $c = new MonthResolution(array('day' => false, 'month' => 7, 'year' => 1988));
-        $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\Month', $c);
+        $res = new MonthResolution(array('day' => false, 'month' => 7, 'year' => 1988));
+        $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\Month', $res);
 
-        $c = new MonthResolution(array());
-        $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\Month', $c);
+        $res = new MonthResolution(array());
+        $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\Month', $res);
     }
 
     public function testBuildCellsNoDate()
     {
-        $c = new MonthResolution(array());
-        $this->assertEquals(array(), $c->buildCells());
+        $res = new MonthResolution(array());
+        $this->assertEquals(array(), $res->buildCells());
+    }
+
+    /*
+     * ------------------ Testing Month Overflows ----------------------
+     */
+
+    public function testSetGetMonthOverflowGood()
+    {
+        $res = new MonthResolution(array());
+        $this->assertEquals($res, $res->setMonthOverflow(2, 3));
+
+        $this->assertEquals(array(
+            'left' => 2,
+            'right' => 3
+        ), $res->getMonthOverflow());
+    }
+
+    public function testSetGetMonthOverflowStrings()
+    {
+        $res = new MonthResolution(array());
+        $res->setMonthOverflow('3', '4');
+
+        $this->assertEquals(array(
+            'left' => 3,
+            'right' => 4
+        ), $res->getMonthOverflow());
+    }
+
+    public function testSetGetMonthOverflowFloats()
+    {
+        $res = new MonthResolution(array());
+        $res->setMonthOverflow('3.765', '4.123');
+
+        $this->assertEquals(array(
+            'left' => 3,
+            'right' => 4
+        ), $res->getMonthOverflow());
+    }
+
+    /*
+     * ------------------ Testing Day Overflows ----------------
+     */
+
+    public function testSetGetDaysOverflow()
+    {
+        $res = new MonthResolution(array());
+        $this->assertFalse($res->getDaysOverflow());
+
+        $res->setDaysOverflow(true);
+        $this->assertTrue($res->getDaysOverflow());
     }
 }

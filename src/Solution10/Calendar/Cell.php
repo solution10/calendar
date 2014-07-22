@@ -104,4 +104,17 @@ class Cell
     {
         return $this->isOverflow;
     }
+
+    /**
+     * Returns whether this cell is "blank" or not. A blank cell is one
+     * which has no date attached to it, and is used as an overflow cell.
+     *
+     * @return  bool
+     */
+    public function isBlank()
+    {
+        return $this->cellDate['day'] === false
+            && $this->cellDate['month'] === false
+            && $this->cellDate['year'] === false;
+    }
 }

@@ -86,4 +86,22 @@ class CellTest extends PHPUnit_Framework_TestCase
         $c->setIsOverflow(true);
         $this->assertTrue($c->isOverflow());
     }
+
+    public function testIsBlank()
+    {
+        $c = new Cell();
+        $this->assertTrue($c->isBlank());
+
+        $c->setCellDate(array('day' => false, 'month' => false, 'year' => 2010));
+        $this->assertFalse($c->isBlank());
+
+        $c->setCellDate(array('day' => false, 'month' => 2, 'year' => false));
+        $this->assertFalse($c->isBlank());
+
+        $c->setCellDate(array('day' => 21, 'month' => false, 'year' => false));
+        $this->assertFalse($c->isBlank());
+
+        $c->setCellDate(array('day' => false, 'month' => false, 'year' => false));
+        $this->assertTrue($c->isBlank());
+    }
 }
