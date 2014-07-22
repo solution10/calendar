@@ -2,6 +2,9 @@
 
 Straightforward calendars, with events, for any templating system.
 
+[![Build Status](https://travis-ci.org/Solution10/calendar.svg?branch=master)](https://travis-ci.org/Solution10/calendar)
+[![Coverage Status](https://coveralls.io/repos/Solution10/calendar/badge.png)](https://coveralls.io/r/Solution10/calendar)
+
 **WIP for the moment, full docs to follow**
 
 ## PHP Requirements

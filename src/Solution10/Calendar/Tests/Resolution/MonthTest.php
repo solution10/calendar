@@ -34,4 +34,10 @@ class MonthTest extends PHPUnit_Framework_TestCase
         $c = new MonthResolution(array());
         $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\Month', $c);
     }
+
+    public function testBuildCellsNoDate()
+    {
+        $c = new MonthResolution(array());
+        $this->assertEquals(array(), $c->buildCells());
+    }
 }
