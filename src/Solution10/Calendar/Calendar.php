@@ -41,6 +41,11 @@ class Calendar
     protected $specificDate = false;
 
     /**
+     * @var     ResolutionInterface     The Resolution for this calendar to work to
+     */
+    protected $resolution;
+
+    /**
      * You can pass the current date in here:
      *
      * @param   bool|int    $year       Current year (4 digits; 2014)
@@ -130,5 +135,33 @@ class Calendar
     public function isSpecificDate()
     {
         return $this->specificDate;
+    }
+
+    /**
+     * ---------------------- Display Options ---------------------
+     */
+
+    /**
+     * Sets the Resolution of the Calendar. Resolutions decide how
+     * many months to show either side, or whether to show a week
+     * or work week.
+     *
+     * @param   ResolutionInterface    $res    Resolution to use
+     * @return  $this
+     */
+    public function setResolution(ResolutionInterface $res)
+    {
+        $this->resolution = $res;
+        return $this;
+    }
+
+    /**
+     * Returns the Resolution of this calendar.
+     *
+     * @return  ResolutionInterface
+     */
+    public function getResolution()
+    {
+        return $this;
     }
 }
