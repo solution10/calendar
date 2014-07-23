@@ -104,50 +104,6 @@ class MonthResolution implements ResolutionInterface
     }
 
     /*
-     * ---------------- Various Date Helpers ------------------
-     */
-
-    /**
-     * Returns information about the given month and year. Returned keys are:
-     *
-     *  [
-     *      'startDate' => '2014-04-01',
-     *      'startDay' => 2
-     *      'endDate' => '2014-04-30',
-     *      'endDay' => 3,
-     *      'totalDays' => 30
-     *  ]
-     *
-     * Days are 1 indexed remember; so Monday = 1 etc
-     *
-     * @param   int     $month  Month
-     * @param   int     $year   Year
-     * @return  array
-     */
-    public function getMonthMeta($month, $year)
-    {
-        $startDate = $year.'-'.str_pad($month, 2, '0', STR_PAD_LEFT).'-01';
-        $startDateTime = new DateTime($startDate);
-
-        $numDays = (int)$startDateTime->format('t');
-        $endDate = $year
-                   .'-'.str_pad($month, 2, '0', STR_PAD_LEFT)
-                   .'-'.str_pad($numDays, 2, '0', STR_PAD_LEFT);
-        $endDateTime = new DateTime($endDate);
-
-        return array(
-            'startDate' => $startDate,
-            'startDay' => (int)$startDateTime->format('N'),
-            'startDateTime' => $startDateTime,
-            'endDate' => $endDate,
-            'endDay' => (int)$endDateTime->format('N'),
-            'endDateTime' => $endDateTime,
-            'totalDays' => $numDays,
-            'isLeapYear' => (bool)$startDateTime->format('L')
-        );
-    }
-
-    /*
      * --------------- Generating the Cells ------------------
      */
 

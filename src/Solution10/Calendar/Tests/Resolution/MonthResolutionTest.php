@@ -7,7 +7,7 @@ use Solution10\Calendar\Resolution\MonthResolution as MonthResolution;
 use DateTime;
 
 /**
- * Class MonthTest
+ * Class MonthResolutionTest
  *
  * Tests out the Month resolution on the calendar.
  *
@@ -25,7 +25,7 @@ use DateTime;
  *
  * @package Solution10\Calendar\Tests\Resolution
  */
-class MonthTest extends PHPUnit_Framework_TestCase
+class MonthResolutionTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
@@ -90,24 +90,5 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
         $res->setDaysOverflow(true);
         $this->assertTrue($res->getDaysOverflow());
-    }
-
-    /*
-     * ----------------- Testing Month Meta ---------------------
-     */
-
-    public function testMonthMeta()
-    {
-        $res = new MonthResolution(array('day' => 13, 'month' => 4, 'year' => 2014));
-        $this->assertEquals(array(
-            'startDate' => '2014-04-01',
-            'startDay' => 2,
-            'startDateTime' => new DateTime('2014-04-01'),
-            'endDate' => '2014-04-30',
-            'endDateTime' => new DateTime('2014-04-30'),
-            'endDay' => 3,
-            'totalDays' => 30,
-            'isLeapYear' => false
-        ), $res->getMonthMeta(4, 2014));
     }
 }
