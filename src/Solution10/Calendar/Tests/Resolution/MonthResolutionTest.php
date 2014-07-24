@@ -36,12 +36,6 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\MonthResolution', $res);
     }
 
-    public function testBuildCellsNoDate()
-    {
-        $res = new MonthResolution(array());
-        $this->assertEquals(array(), $res->buildCells());
-    }
-
     /*
      * ------------------ Testing Month Overflows ----------------------
      */
@@ -90,5 +84,22 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
         $res->setDaysOverflow(true);
         $this->assertTrue($res->getDaysOverflow());
+    }
+
+    /*
+     * ----------------- Testing Build Cells -------------------
+     */
+
+    public function testBuildCellsNoDate()
+    {
+        $res = new MonthResolution(array());
+        $this->assertEquals(array(), $res->buildCells());
+    }
+
+    public function testBuildCellsOneEitherSide()
+    {
+        $res = new MonthResolution(array('day' => 15, 'month' => 5, 'year' => 2014));
+        $res->setMonthOverflow(1, 1);
+        $cells = $res->buildCells();
     }
 }

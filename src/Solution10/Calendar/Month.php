@@ -5,7 +5,6 @@ namespace Solution10\Calendar;
 use DateTime;
 use Exception;
 use Solution10\Calendar\Exception\Date as DateException;
-use Solution10\Calendar\Year;
 
 /**
  * Class Month
@@ -103,5 +102,45 @@ class Month
             $this->year = new Year($this->startDateTime->format('Y'));
         }
         return $this->year;
+    }
+
+    /**
+     * Grabs a "previous" month given by an offset. So if this
+     * month is April, a prev(1) will give March. prev(2) will give February.
+     *
+     * @param   int     $offset     Offset
+     * @return  Month
+     */
+    public function prev($offset = 1)
+    {
+        $prevDateTime = clone $this->startDateTime;
+        $prevDateTime->modify('-'.abs($offset).' months');
+        return new Month($prevDateTime->format('Y'), $prevDateTime->format('n'));
+    }
+
+    /**
+     * Grabs a "next" month given by an offset. So if this
+     * month is April, a prev(1) will give March. prev(2) will give February.
+     *
+     * @param   int     $offset     Offset
+     * @return  Month
+     */
+    public function next($offset = 1)
+    {
+        $nextDateTime = clone $this->startDateTime;
+        $nextDateTime->modify('+'.abs($offset).' months');
+        return new Month($nextDateTime->format('Y'), $nextDateTime->format('n'));
+    }
+
+    /**
+     * Returns the weeks associated with this month. This function is sensitive
+     * to the setDaysOverflow() option, so if you are overflowing, you'll see
+     * cells belonging to other months at the front and back.
+     *
+     * @return  Week[]
+     */
+    public function weeks()
+    {
+        return array();
     }
 }

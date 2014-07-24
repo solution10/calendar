@@ -4,7 +4,7 @@ namespace Solution10\Calendar\Resolution;
 
 use Solution10\Calendar\ResolutionInterface;
 use Solution10\Calendar\Cell;
-use DateTime;
+use Solution10\Calendar\Month;
 
 /**
  * Class Month
@@ -122,17 +122,21 @@ class MonthResolution implements ResolutionInterface
 
         // We need to know how many months to display, so that's the first job:
         $monthsToDisplay = array();
-        $thisMonthMeta = $this->getMonthMeta($this->currentDate['month'], $this->currentDate['year']);
+        $thisMonth = new Month($this->currentDate['year'], $this->currentDate['month']);
 
         // Go backwards first:
-        for ($i = 1; $i <= $this->monthOverflow['left']; $i ++) {
-            $monthDateTime = clone $thisMonthMeta['startDateTime'];
-//            $monthDateTime->modify()
+        for ($i = $this->monthOverflow['left']; $i != 0; $i --) {
+            $monthsToDisplay[] = $thisMonth->prev($i);
         }
 
+        // And the current:
+        $monthsToDisplay[] = $thisMonth;
 
-        return $cells;
+        // And then forwards:
+        for ($i = 1; $i <= $this->monthOverflow['right']; $i ++) {
+            $monthsToDisplay[] = $thisMonth->next($i);
+        }
+
+        return $monthsToDisplay;
     }
-
-
 }

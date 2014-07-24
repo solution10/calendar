@@ -70,4 +70,14 @@ class MonthTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Solution10\\Calendar\\Year', $m->year());
         $this->assertEquals(2014, $m->year()->yearFull());
     }
+
+    /*
+     * --------------- Testing Weeks Access ----------------
+     */
+
+    public function testWeeks()
+    {
+        $m = new Month(2014, 4);
+        $this->assertTrue(is_array($m->weeks()));
+    }
 }
