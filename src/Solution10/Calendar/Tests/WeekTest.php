@@ -119,4 +119,23 @@ class WeekTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('2014-04-06', $w->weekStart()->format('Y-m-d'));
         $this->assertEquals('2014-04-12', $w->weekEnd()->format('Y-m-d'));
     }
+
+    /*
+     * --------------- Testing Get Days ------------------
+     */
+
+    public function testGetDays()
+    {
+        $w = new Week(new DateTime('2014-04-16'));
+        $days = $w->days();
+
+        $this->assertCount(7, $days);
+        $this->assertEquals('2014-04-14', $days[0]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-15', $days[1]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-16', $days[2]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-17', $days[3]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-18', $days[4]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-19', $days[5]->date()->format('Y-m-d'));
+        $this->assertEquals('2014-04-20', $days[6]->date()->format('Y-m-d'));
+    }
 }

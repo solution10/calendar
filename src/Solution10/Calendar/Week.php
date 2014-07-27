@@ -30,6 +30,11 @@ class Week
     protected $daysOfWeek;
 
     /**
+     * @var     Day[]   Days that this week contains.
+     */
+    protected $days;
+
+    /**
      * For this constructor, pass in a date within the week you want to study.
      * Doesn't have to be the first day or last, as long as it's in that week
      * the class will adapt.
@@ -75,5 +80,23 @@ class Week
     public function weekEnd()
     {
         return $this->weekEnd;
+    }
+
+    /**
+     * Returns the days in this week.
+     *
+     * @return  Day[]
+     */
+    public function days()
+    {
+        if (!isset($this->days)) {
+            $clonedStart = clone $this->weekStart;
+            $this->days = array();
+            for ($i = 0; $i < 7; $i ++) {
+                $this->days[] = new Day($clonedStart);
+                $clonedStart->modify('+1 day');
+            }
+        }
+        return $this->days;
     }
 }
