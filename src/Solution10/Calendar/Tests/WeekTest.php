@@ -75,8 +75,48 @@ class WeekTest extends PHPUnit_Framework_TestCase
     }
 
     /*
-     * ---------- Week Number tests -------------
+     * ---------- Testing non Monday start weeks -------------
      */
 
+    public function testTuesdayStart()
+    {
+        $w = new Week(new DateTime('2014-04-02'), 'Tuesday');
+        $this->assertEquals('2014-04-01', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-07', $w->weekEnd()->format('Y-m-d'));
+    }
 
+    public function testWednesdayStart()
+    {
+        $w = new Week(new DateTime('2014-04-03'), 'Wednesday');
+        $this->assertEquals('2014-04-02', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-08', $w->weekEnd()->format('Y-m-d'));
+    }
+
+    public function testThursdayStart()
+    {
+        $w = new Week(new DateTime('2014-04-04'), 'Thursday');
+        $this->assertEquals('2014-04-03', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-09', $w->weekEnd()->format('Y-m-d'));
+    }
+
+    public function testFridayStart()
+    {
+        $w = new Week(new DateTime('2014-04-05'), 'Friday');
+        $this->assertEquals('2014-04-04', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-10', $w->weekEnd()->format('Y-m-d'));
+    }
+
+    public function testSaturdayStart()
+    {
+        $w = new Week(new DateTime('2014-04-06'), 'Saturday');
+        $this->assertEquals('2014-04-05', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-11', $w->weekEnd()->format('Y-m-d'));
+    }
+
+    public function testSundayStart()
+    {
+        $w = new Week(new DateTime('2014-04-07'), 'Sunday');
+        $this->assertEquals('2014-04-06', $w->weekStart()->format('Y-m-d'));
+        $this->assertEquals('2014-04-12', $w->weekEnd()->format('Y-m-d'));
+    }
 }

@@ -3,6 +3,7 @@
 namespace Solution10\Calendar;
 
 use DateTime;
+use Solution10\Collection\Collection;
 
 /**
  * Class Week
@@ -24,19 +25,36 @@ class Week
     protected $weekEnd;
 
     /**
+     * @var     Collection  Days of the week
+     */
+    protected $daysOfWeek;
+
+    /**
      * For this constructor, pass in a date within the week you want to study.
      * Doesn't have to be the first day or last, as long as it's in that week
      * the class will adapt.
      *
      * @param   DateTime    $pointWithinWeek
+     * @param   string      $startDay           Day that the week starts on (in English, sorry)
      */
-    public function __construct(DateTime $pointWithinWeek)
+    public function __construct(DateTime $pointWithinWeek, $startDay = 'Monday')
     {
-        $this->weekStart = clone $pointWithinWeek;
-        $this->weekStart->modify('Monday this week');
+        // Create the days of the week:
+        $this->daysOfWeek = new Collection(array(
+            'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+        ));
 
-        $this->weekEnd = clone $pointWithinWeek;
-        $this->weekEnd->modify('this Sunday');
+        // Work out the start of the week:
+        $this->weekStart = clone $pointWithinWeek;
+        if ($this->weekStart->format('l') != $startDay) {
+            // We're not on the first day, so move backwards:
+            $this->weekStart->modify('previous '.$startDay);
+        }
+
+        // And now the end of the week is just 6 days on:
+        $this->weekEnd = clone $this->weekStart;
+        $this->weekEnd->modify('+6 days');
+
     }
 
     /**
@@ -58,5 +76,4 @@ class Week
     {
         return $this->weekEnd;
     }
-
 }
