@@ -37,6 +37,11 @@ class Month
     protected $year;
 
     /**
+     * @var     array   Array containing the weeks of this month
+     */
+    protected $weeks = array();
+
+    /**
      * Pass in the year and month number (1 = Jan, 2 = Feb etc)
      *
      * @param   int     $year
@@ -133,14 +138,29 @@ class Month
     }
 
     /**
-     * Returns the weeks associated with this month. This function is sensitive
-     * to the setDaysOverflow() option, so if you are overflowing, you'll see
-     * cells belonging to other months at the front and back.
+     * Returns the weeks associated with this month. Not all of these weeks might
+     * start and end in this month, but they all contain days from this month.
      *
+     * @param   string  $startDay   The day that weeks start on.
      * @return  Week[]
      */
-    public function weeks()
+    public function weeks($startDay = 'Monday')
     {
-        return array();
+        if (!isset($this->weeks[$startDay])) {
+            $this->weeks[$startDay] = array();
+            $keepWeeking = true;
+            $weekPoint = clone $this->firstDay();
+
+            while ($keepWeeking) {
+                $candidateWeek = new Week($weekPoint, $startDay);
+                if ($candidateWeek->weekStart() <= $this->lastDay()) {
+                    $this->weeks[$startDay][] = $candidateWeek;
+                    $weekPoint->modify('+1 week');
+                } else {
+                    $keepWeeking = false;
+                }
+            }
+        }
+        return $this->weeks[$startDay];
     }
 }

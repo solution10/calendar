@@ -77,7 +77,16 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
     public function testWeeks()
     {
-        $m = new Month(2014, 4);
-        $this->assertTrue(is_array($m->weeks()));
+        $april = new Month(2014, 4);
+        $this->assertTrue(is_array($april->weeks()));
+        $this->assertCount(5, $april->weeks());
+
+        $may = new Month(2014, 5);
+        $this->assertTrue(is_array($may->weeks()));
+        $this->assertCount(5, $may->weeks());
+
+        $june = new Month(2014, 6);
+        $this->assertTrue(is_array($june->weeks()));
+        $this->assertCount(6, $june->weeks());
     }
 }
