@@ -140,15 +140,19 @@ class MonthResolution implements ResolutionInterface
      */
     public function build()
     {
-        $cells = array();
-
-        if (!array_key_exists('month', $this->currentDate) || !array_key_exists('year', $this->currentDate)) {
-            return $cells;
+        if (!isset($this->currentDate)) {
+            return array();
         }
+
+//        $cells = array();
+//
+//        if (!array_key_exists('month', $this->currentDate) || !array_key_exists('year', $this->currentDate)) {
+//            return $cells;
+//        }
 
         // We need to know how many months to display, so that's the first job:
         $monthsToDisplay = array();
-        $thisMonth = new Month($this->currentDate['year'], $this->currentDate['month']);
+        $thisMonth = new Month($this->currentDate);
 
         // Go backwards first:
         for ($i = $this->monthOverflow['left']; $i != 0; $i --) {

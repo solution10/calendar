@@ -33,11 +33,13 @@ class Calendar
     /**
      * You can pass the current date in here:
      *
-     * @param   DateTime    $dateTime
+     * @param   DateTime|null    $dateTime
      */
-    public function __construct(DateTime $dateTime)
+    public function __construct(DateTime $dateTime = null)
     {
-        $this->setCurrentDate($dateTime);
+        if ($dateTime !== null) {
+            $this->setCurrentDate($dateTime);
+        }
     }
 
     /**

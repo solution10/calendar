@@ -29,10 +29,10 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $res = new MonthResolution(array('day' => false, 'month' => 7, 'year' => 1988));
+        $res = new MonthResolution();
         $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\MonthResolution', $res);
 
-        $res = new MonthResolution(array());
+        $res = new MonthResolution(3, 9, false);
         $this->assertInstanceOf('Solution10\\Calendar\\Resolution\\MonthResolution', $res);
     }
 
@@ -42,7 +42,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
     public function testSetGetMonthOverflowGood()
     {
-        $res = new MonthResolution(array());
+        $res = new MonthResolution();
         $this->assertEquals($res, $res->setMonthOverflow(2, 3));
 
         $this->assertEquals(array(
@@ -53,7 +53,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
     public function testSetGetMonthOverflowStrings()
     {
-        $res = new MonthResolution(array());
+        $res = new MonthResolution();
         $res->setMonthOverflow('3', '4');
 
         $this->assertEquals(array(
@@ -64,7 +64,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
     public function testSetGetMonthOverflowFloats()
     {
-        $res = new MonthResolution(array());
+        $res = new MonthResolution();
         $res->setMonthOverflow('3.765', '4.123');
 
         $this->assertEquals(array(
@@ -79,7 +79,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
     public function testSetGetDaysOverflow()
     {
-        $res = new MonthResolution(array());
+        $res = new MonthResolution();
         $this->assertFalse($res->getDaysOverflow());
 
         $res->setDaysOverflow(true);
@@ -92,14 +92,14 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
 
     public function testBuildCellsNoDate()
     {
-        $res = new MonthResolution(array());
-        $this->assertEquals(array(), $res->buildCells());
+        $res = new MonthResolution();
+        $this->assertEquals(array(), $res->build());
     }
 
     public function testBuildCellsOneEitherSide()
     {
-        $res = new MonthResolution(array('day' => 15, 'month' => 5, 'year' => 2014));
-        $res->setMonthOverflow(1, 1);
-        $cells = $res->buildCells();
+        $res = new MonthResolution(1, 1);
+        $res->setDateTime(new DateTime('2014-05-15'));
+        $cells = $res->build();
     }
 }

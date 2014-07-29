@@ -114,7 +114,7 @@ class Month
     {
         $prevDateTime = clone $this->startDateTime;
         $prevDateTime->modify('-'.abs($offset).' months');
-        return new Month($prevDateTime->format('Y'), $prevDateTime->format('n'));
+        return new Month($prevDateTime);
     }
 
     /**
@@ -128,7 +128,7 @@ class Month
     {
         $nextDateTime = clone $this->startDateTime;
         $nextDateTime->modify('+'.abs($offset).' months');
-        return new Month($nextDateTime->format('Y'), $nextDateTime->format('n'));
+        return new Month($nextDateTime);
     }
 
     /**
