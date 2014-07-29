@@ -2,8 +2,8 @@
 
 namespace Solution10\Calendar\Resolution;
 
+use DateTime;
 use Solution10\Calendar\ResolutionInterface;
-use Solution10\Calendar\Cell;
 use Solution10\Calendar\Month;
 
 /**
@@ -21,7 +21,7 @@ use Solution10\Calendar\Month;
 class MonthResolution implements ResolutionInterface
 {
     /**
-     * @var     array   The current date in it's array parts: Date parts ['day' => x, 'month' => y, 'year' => z]
+     * @var     DateTime    Current date, according to the resolution
      */
     protected $currentDate;
 
@@ -36,13 +36,39 @@ class MonthResolution implements ResolutionInterface
     protected $daysOverflow = false;
 
     /**
-     * Constructor should accept the current date.
+     * Constructor takes three arguments, how many months left of current to show, how many right
+     * of current to show, and whether to overflow days between the months.
      *
-     * @param   array   $currentDate    Date parts ['day' => x, 'month' => y, 'year' => z]
+     * @param   int     $left           Number of months before current to show
+     * @param   int     $right          Number of months after current to show
+     * @param   bool    $overflowDays   Whether to show days belonging to other months or not.
      */
-    public function __construct(array $currentDate)
+    public function __construct($left = 0, $right = 0, $overflowDays = false)
     {
-        $this->currentDate = $currentDate;
+        $this->setMonthOverflow($left, $right);
+        $this->setDaysOverflow($overflowDays);
+    }
+
+    /**
+     * Setting the date on the Resolution
+     *
+     * @param   DateTime    $dateTime
+     * @return  $this
+     */
+    public function setDateTime(DateTime $dateTime)
+    {
+        $this->currentDate = $dateTime;
+        return $this;
+    }
+
+    /**
+     * Returns the current date this Resolution thinks it is.
+     *
+     * @return  DateTime
+     */
+    public function getDateTime()
+    {
+        return $this->currentDate;
     }
 
     /*
@@ -108,11 +134,11 @@ class MonthResolution implements ResolutionInterface
      */
 
     /**
-     * Returns an array of Cell objects representing the current Resolution.
+     * Returns the month objects to display
      *
-     * @return  Cell[]
+     * @return  Month[]
      */
-    public function buildCells()
+    public function build()
     {
         $cells = array();
 

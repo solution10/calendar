@@ -3,8 +3,6 @@
 namespace Solution10\Calendar;
 
 use DateTime;
-use Exception;
-use Solution10\Calendar\Exception\Date as DateException;
 
 /**
  * Class Month
@@ -42,27 +40,23 @@ class Month
     protected $weeks = array();
 
     /**
-     * Pass in the year and month number (1 = Jan, 2 = Feb etc)
+     * Pass in a DateTime at some point within the month you want to
+     * represent. So Month(new DateTime('2014-04-08')) will give April 2014.
+     * The day component of the date is ignored.
      *
-     * @param   int     $year
-     * @param   int     $month
-     * @throws  DateException
+     * @param   DateTime    $pointWithinMonth   Some date within the month
      */
-    public function __construct($year, $month)
+    public function __construct(DateTime $pointWithinMonth)
     {
-        $startDate = $year.'-'.str_pad($month, 2, '0', STR_PAD_LEFT).'-01';
+        $year = $pointWithinMonth->format('Y');
+        $month = $pointWithinMonth->format('m');
 
-        try {
-            $this->startDateTime = new DateTime($startDate);
-        } catch (Exception $e) {
-            throw new DateException($e->getMessage(), DateException::INVALID_DATE, $e);
-        }
+        $startDate = $year.'-'.$month.'-01';
+        $this->startDateTime = new DateTime($startDate);
 
         $this->numDays = (int)$this->startDateTime->format('t');
-        $endDate = $year
-            .'-'.str_pad($month, 2, '0', STR_PAD_LEFT)
-            .'-'.str_pad($this->numDays, 2, '0', STR_PAD_LEFT);
 
+        $endDate = $year.'-'.$month.'-'.str_pad($this->numDays, 2, '0', STR_PAD_LEFT);
         $this->endDateTime = new DateTime($endDate);
     }
 

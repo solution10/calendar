@@ -2,12 +2,29 @@
 
 namespace Solution10\Calendar;
 
+use DateTime;
+
 interface ResolutionInterface
 {
     /**
-     * Returns an array of Cell objects representing the current Resolution.
+     * Setting the date on the Resolution
      *
-     * @return  Cell[]
+     * @param   DateTime    $dateTime
+     * @return  $this
      */
-    public function buildCells();
+    public function setDateTime(DateTime $dateTime);
+
+    /**
+     * Returns the current date this Resolution thinks it is.
+     *
+     * @return  DateTime
+     */
+    public function getDateTime();
+
+    /**
+     * Returns the data for this view. Could be anything!
+     *
+     * @return  mixed
+     */
+    public function build();
 }

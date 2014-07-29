@@ -4,31 +4,14 @@ namespace Solution10\Calendar\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Month;
+use DateTime;
 
 class MonthTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $m = new Month(2014, 4);
+        $m = new Month(new DateTime('2014-04-16'));
         $this->assertInstanceOf('Solution10\\Calendar\\Month', $m);
-    }
-
-    /**
-     * @expectedException       \Solution10\Calendar\Exception\Date
-     * @expectedExceptionCode   \Solution10\Calendar\Exception\Date::INVALID_DATE
-     */
-    public function testConstructBadYear()
-    {
-        new Month('apple', 4);
-    }
-
-    /**
-     * @expectedException       \Solution10\Calendar\Exception\Date
-     * @expectedExceptionCode   \Solution10\Calendar\Exception\Date::INVALID_DATE
-     */
-    public function testConstructBadMonth()
-    {
-        new Month(2014, 'apple');
     }
 
     /*
@@ -37,13 +20,13 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
     public function testFirstDay()
     {
-        $m = new Month(2014, 4);
+        $m = new Month(new DateTime('2014-04-16'));
         $this->assertEquals('2014-04-01', $m->firstDay()->format('Y-m-d'));
     }
 
     public function testLastDay()
     {
-        $m = new Month(2014, 4);
+        $m = new Month(new DateTime('2014-04-16'));
         $this->assertEquals('2014-04-30', $m->lastDay()->format('Y-m-d'));
     }
 
@@ -53,10 +36,10 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
     public function testNumDays()
     {
-        $m = new Month(2014, 4);
+        $m = new Month(new DateTime('2014-04-16'));
         $this->assertEquals(30, $m->numDays());
 
-        $m = new Month(2014, 5);
+        $m = new Month(new DateTime('2014-05-27'));
         $this->assertEquals(31, $m->numDays());
     }
 
@@ -66,7 +49,7 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
     public function testYear()
     {
-        $m = new Month(2014, 4);
+        $m = new Month(new DateTime('2014-04-16'));
         $this->assertInstanceOf('Solution10\\Calendar\\Year', $m->year());
         $this->assertEquals(2014, $m->year()->yearFull());
     }
@@ -77,15 +60,15 @@ class MonthTest extends PHPUnit_Framework_TestCase
 
     public function testWeeks()
     {
-        $april = new Month(2014, 4);
+        $april = new Month(new DateTime('2014-04-16'));
         $this->assertTrue(is_array($april->weeks()));
         $this->assertCount(5, $april->weeks());
 
-        $may = new Month(2014, 5);
+        $may = new Month(new DateTime('2014-05-27'));
         $this->assertTrue(is_array($may->weeks()));
         $this->assertCount(5, $may->weeks());
 
-        $june = new Month(2014, 6);
+        $june = new Month(new DateTime('2014-06-08'));
         $this->assertTrue(is_array($june->weeks()));
         $this->assertCount(6, $june->weeks());
     }

@@ -44,11 +44,6 @@ class Week
      */
     public function __construct(DateTime $pointWithinWeek, $startDay = 'Monday')
     {
-        // Create the days of the week:
-//        $this->daysOfWeek = new Collection(array(
-//            'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
-//        ));
-
         // Work out the start of the week:
         $this->weekStart = clone $pointWithinWeek;
         if ($this->weekStart->format('l') != $startDay) {
