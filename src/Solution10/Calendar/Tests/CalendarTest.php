@@ -55,4 +55,17 @@ class CalendarTests extends PHPUnit_Framework_TestCase
         $this->assertEquals($c, $c->setResolution($res));
         $this->assertEquals($res, $c->getResolution());
     }
+
+    /*
+     * ---------------- Testing Getting View Data -----------------
+     */
+
+    public function testGetViewData()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+        $c->setResolution(new MonthResolution());
+        $viewData = $c->viewData();
+        $this->assertArrayHasKey('contents', $viewData);
+        $this->assertTrue(is_array($viewData['contents']));
+    }
 }

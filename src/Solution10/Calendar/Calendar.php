@@ -93,4 +93,21 @@ class Calendar
     {
         return $this->resolution;
     }
+
+    /*
+     * -------------------- Rendering Functions ------------------
+     */
+
+    /**
+     * Returns the data for your templating system to render the calendar.
+     *
+     * @return  array
+     */
+    public function viewData()
+    {
+        $resolutionData = $this->resolution->build();
+        return array(
+            'contents' => $resolutionData
+        );
+    }
 }

@@ -1585,6 +1585,7 @@
     "stability-flags": {
         "satooshi/php-coveralls": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">= 5.3"
     },
