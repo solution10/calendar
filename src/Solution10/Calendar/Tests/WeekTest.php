@@ -30,6 +30,14 @@ class WeekTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Solution10\\Calendar\\Week', $w);
     }
 
+    public function testGetSetContainingMonth()
+    {
+        $w = new Week(new DateTime('2014-04-17'));
+        $month = new DateTime('2014-04-01');
+        $this->assertEquals($w, $w->setContainingMonth($month));
+        $this->assertEquals('2014-04-01', $w->containingMonth()->format('Y-m-d'));
+    }
+
     /*
      * -------------- Week Start tests ------------------
      */
@@ -137,5 +145,35 @@ class WeekTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('2014-04-18', $days[4]->date()->format('Y-m-d'));
         $this->assertEquals('2014-04-19', $days[5]->date()->format('Y-m-d'));
         $this->assertEquals('2014-04-20', $days[6]->date()->format('Y-m-d'));
+    }
+
+    public function testGetDaysOverflowsFront()
+    {
+        $w = new Week(new DateTime('2014-07-02'));
+        $w->setContainingMonth(new DateTime('2014-07-02'));
+        $days = $w->days();
+
+        $this->assertTrue($days[0]->isOverflow());
+        $this->assertFalse($days[1]->isOverflow());
+        $this->assertFalse($days[2]->isOverflow());
+        $this->assertFalse($days[3]->isOverflow());
+        $this->assertFalse($days[4]->isOverflow());
+        $this->assertFalse($days[5]->isOverflow());
+        $this->assertFalse($days[6]->isOverflow());
+    }
+
+    public function testGetDaysOverflowsRear()
+    {
+        $w = new Week(new DateTime('2014-07-02'));
+        $w->setContainingMonth(new DateTime('2014-06-30'));
+        $days = $w->days();
+
+        $this->assertFalse($days[0]->isOverflow());
+        $this->assertTrue($days[1]->isOverflow());
+        $this->assertTrue($days[2]->isOverflow());
+        $this->assertTrue($days[3]->isOverflow());
+        $this->assertTrue($days[4]->isOverflow());
+        $this->assertTrue($days[5]->isOverflow());
+        $this->assertTrue($days[6]->isOverflow());
     }
 }

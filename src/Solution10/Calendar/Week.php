@@ -3,7 +3,6 @@
 namespace Solution10\Calendar;
 
 use DateTime;
-use Solution10\Collection\Collection;
 
 /**
  * Class Week

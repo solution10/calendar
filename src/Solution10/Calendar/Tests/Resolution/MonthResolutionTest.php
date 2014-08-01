@@ -37,6 +37,19 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
     }
 
     /*
+     * -------------- Testing Get/Set Datetime ----------------------
+     */
+
+    public function testGetSetDateTime()
+    {
+        $res = new MonthResolution();
+        $this->assertNull($res->getDateTime());
+
+        $res->setDateTime(new DateTime('2014-05-27'));
+        $this->assertEquals('2014-05-27', $res->getDateTime()->format('Y-m-d'));
+    }
+
+    /*
      * ------------------ Testing Month Overflows ----------------------
      */
 
@@ -100,6 +113,6 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
     {
         $res = new MonthResolution(1, 1);
         $res->setDateTime(new DateTime('2014-05-15'));
-        $cells = $res->build();
+        $res->build();
     }
 }

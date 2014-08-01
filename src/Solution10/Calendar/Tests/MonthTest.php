@@ -14,6 +14,12 @@ class MonthTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Solution10\\Calendar\\Month', $m);
     }
 
+    public function testTitle()
+    {
+        $m = new Month(new DateTime('2014-04-16'));
+        $this->assertEquals('2014-04-01', $m->title('Y-m-d'));
+    }
+
     /*
      * -------------- Testing Start and End dates --------------
      */
