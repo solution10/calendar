@@ -25,9 +25,9 @@ class Week
     protected $weekEnd;
 
     /**
-     * @var     Collection  Days of the week
+     * @var     DateTime    Containing month (optional)
      */
-    protected $daysOfWeek;
+    protected $containingMonth = null;
 
     /**
      * @var     Day[]   Days that this week contains.
@@ -78,6 +78,29 @@ class Week
     }
 
     /**
+     * Sets the containing month of this week. Used to work out if
+     * days are in overflow or not. Totally optional.
+     *
+     * @param   DateTime    $containingMonth
+     * @return  $this
+     */
+    public function setContainingMonth(DateTime $containingMonth)
+    {
+        $this->containingMonth = clone $containingMonth;
+        return $this;
+    }
+
+    /**
+     * Gets the containing month
+     *
+     * @return  DateTime
+     */
+    public function containingMonth()
+    {
+        return $this->containingMonth;
+    }
+
+    /**
      * Returns the days in this week.
      *
      * @return  Day[]
@@ -88,7 +111,13 @@ class Week
             $clonedStart = clone $this->weekStart;
             $this->days = array();
             for ($i = 0; $i < 7; $i ++) {
-                $this->days[] = new Day($clonedStart);
+                $thisDay = new Day($clonedStart);
+
+                if ($this->containingMonth && $this->containingMonth->format('m') != $clonedStart->format('m')) {
+                    $thisDay->setIsOverflow(true);
+                }
+
+                $this->days[] = $thisDay;
                 $clonedStart->modify('+1 day');
             }
         }

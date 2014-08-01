@@ -80,10 +80,10 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
     public function testSetGetDaysOverflow()
     {
         $res = new MonthResolution();
-        $this->assertFalse($res->getDaysOverflow());
+        $this->assertFalse($res->showOverflowDays());
 
-        $res->setDaysOverflow(true);
-        $this->assertTrue($res->getDaysOverflow());
+        $res->setShowOverflowDays(true);
+        $this->assertTrue($res->showOverflowDays());
     }
 
     /*

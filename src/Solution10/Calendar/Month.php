@@ -148,6 +148,7 @@ class Month
             while ($keepWeeking) {
                 $candidateWeek = new Week($weekPoint, $startDay);
                 if ($candidateWeek->weekStart() <= $this->lastDay()) {
+                    $candidateWeek->setContainingMonth($this->firstDay());
                     $this->weeks[$startDay][] = $candidateWeek;
                     $weekPoint->modify('+1 week');
                 } else {
@@ -156,5 +157,17 @@ class Month
             }
         }
         return $this->weeks[$startDay];
+    }
+
+    /**
+     * This is a shortcut for $month->firstDay()->format() but it
+     * just makes for a prettier API
+     *
+     * @param   string  $format     DateTime::format() suitable string
+     * @return  string
+     */
+    public function title($format)
+    {
+        return $this->firstDay()->format($format);
     }
 }

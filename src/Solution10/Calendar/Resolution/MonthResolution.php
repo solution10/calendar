@@ -46,7 +46,7 @@ class MonthResolution implements ResolutionInterface
     public function __construct($left = 0, $right = 0, $overflowDays = false)
     {
         $this->setMonthOverflow($left, $right);
-        $this->setDaysOverflow($overflowDays);
+        $this->setShowOverflowDays($overflowDays);
     }
 
     /**
@@ -113,7 +113,7 @@ class MonthResolution implements ResolutionInterface
      * @param   bool    $useDaysOverflow    True for yes, false for no
      * @return  $this
      */
-    public function setDaysOverflow($useDaysOverflow)
+    public function setShowOverflowDays($useDaysOverflow)
     {
         $this->daysOverflow = (bool)$useDaysOverflow;
         return $this;
@@ -124,7 +124,7 @@ class MonthResolution implements ResolutionInterface
      *
      * @return  bool
      */
-    public function getDaysOverflow()
+    public function showOverflowDays()
     {
         return $this->daysOverflow;
     }

@@ -12,6 +12,11 @@ class Day
     protected $today;
 
     /**
+     * @var     bool    Whether this day is an "overflow" day between months or not.
+     */
+    protected $isOverflow = false;
+
+    /**
      * Pass in the date that this day represents.
      *
      * @param   DateTime    $date
@@ -29,5 +34,26 @@ class Day
     public function date()
     {
         return $this->today;
+    }
+
+    /**
+     * Sets whether this day is overflow
+     *
+     * @param   bool    $isOverflow
+     * @return  $this
+     */
+    public function setIsOverflow($isOverflow)
+    {
+        $this->isOverflow = $isOverflow;
+    }
+
+    /**
+     * Returns whether this day is overflow or not
+     *
+     * @return  bool
+     */
+    public function isOverflow()
+    {
+        return $this->isOverflow;
     }
 }
