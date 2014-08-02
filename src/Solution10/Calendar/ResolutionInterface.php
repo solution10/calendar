@@ -19,7 +19,7 @@ interface ResolutionInterface
      *
      * @return  DateTime
      */
-    public function getDateTime();
+    public function dateTime();
 
     /**
      * Returns the data for this view. Could be anything!

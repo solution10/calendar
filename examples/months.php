@@ -37,7 +37,7 @@ $months = $viewData['contents'];
                     <td>
                         <?php
                             if ($day->isOverflow()) {
-                                if ($calendar->getResolution()->showOverflowDays()) {
+                                if ($calendar->resolution()->showOverflowDays()) {
                                     echo '<span style="color: #ccc">'.$day->date()->format('d').'</span>';
                                 } else {
                                     echo '&nbsp;';
@@ -60,7 +60,7 @@ $months = $viewData['contents'];
 // We can also modify the resolution in place and re-render the calendar.
 // Let's ask the calendar to render a month either side.
 
-$calendar->getResolution()->setMonthOverflow(1, 1);
+$calendar->resolution()->setMonthOverflow(1, 1);
 $viewData = $calendar->viewData();
 
 /* @var     $months     Solution10\Calendar\Month[] */
@@ -85,7 +85,7 @@ $months = $viewData['contents'];
                     <td>
                         <?php
                         if ($day->isOverflow()) {
-                            if ($calendar->getResolution()->showOverflowDays()) {
+                            if ($calendar->resolution()->showOverflowDays()) {
                                 echo '<span style="color: #ccc">'.$day->date()->format('d').'</span>';
                             } else {
                                 echo '&nbsp;';
@@ -109,7 +109,7 @@ $months = $viewData['contents'];
 // And finally, we can also display days from other months,
 // otherwise known as overflowing:
 
-$calendar->getResolution()->setShowOverflowDays(true);
+$calendar->resolution()->setShowOverflowDays(true);
 $viewData = $calendar->viewData();
 
 /* @var     $months     Solution10\Calendar\Month[] */
@@ -134,7 +134,7 @@ $months = $viewData['contents'];
                     <td>
                         <?php
                         if ($day->isOverflow()) {
-                            if ($calendar->getResolution()->showOverflowDays()) {
+                            if ($calendar->resolution()->showOverflowDays()) {
                                 echo '<span style="color: #ccc">'.$day->date()->format('d').'</span>';
                             } else {
                                 echo '&nbsp;';

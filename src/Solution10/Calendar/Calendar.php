@@ -60,7 +60,7 @@ class Calendar
      *
      * @return  DateTime
      */
-    public function getCurrentDate()
+    public function currentDate()
     {
         return $this->currentDateTime;
     }
@@ -80,7 +80,7 @@ class Calendar
     public function setResolution(ResolutionInterface $res)
     {
         $this->resolution = $res;
-        $this->resolution->setDateTime($this->getCurrentDate());
+        $this->resolution->setDateTime($this->currentDate());
         return $this;
     }
 
@@ -89,7 +89,7 @@ class Calendar
      *
      * @return  ResolutionInterface
      */
-    public function getResolution()
+    public function resolution()
     {
         return $this->resolution;
     }

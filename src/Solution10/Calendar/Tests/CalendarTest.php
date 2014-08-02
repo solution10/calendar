@@ -29,17 +29,17 @@ class CalendarTests extends PHPUnit_Framework_TestCase
     {
         $dt = new DateTime();
         $c = new Calendar($dt);
-        $this->assertEquals($dt, $c->getCurrentDate());
+        $this->assertEquals($dt, $c->currentDate());
 
         $dt = new DateTime('1988-07-02');
         $c = new Calendar($dt);
-        $this->assertEquals($dt, $c->getCurrentDate());
+        $this->assertEquals($dt, $c->currentDate());
     }
 
     public function testGetDateTime()
     {
         $c = new Calendar(new DateTime('2000-01-01'));
-        $this->assertEquals('2000-01-01', $c->getCurrentDate()->format('Y-m-d'));
+        $this->assertEquals('2000-01-01', $c->currentDate()->format('Y-m-d'));
     }
 
     /*
@@ -50,10 +50,10 @@ class CalendarTests extends PHPUnit_Framework_TestCase
     {
         $c = new Calendar(new DateTime());
         $res = new MonthResolution();
-        $res->setDateTime($c->getCurrentDate());
+        $res->setDateTime($c->currentDate());
 
         $this->assertEquals($c, $c->setResolution($res));
-        $this->assertEquals($res, $c->getResolution());
+        $this->assertEquals($res, $c->resolution());
     }
 
     /*

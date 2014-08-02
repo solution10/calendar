@@ -43,10 +43,10 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
     public function testGetSetDateTime()
     {
         $res = new MonthResolution();
-        $this->assertNull($res->getDateTime());
+        $this->assertNull($res->dateTime());
 
         $res->setDateTime(new DateTime('2014-05-27'));
-        $this->assertEquals('2014-05-27', $res->getDateTime()->format('Y-m-d'));
+        $this->assertEquals('2014-05-27', $res->dateTime()->format('Y-m-d'));
     }
 
     /*
@@ -61,7 +61,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(
             'left' => 2,
             'right' => 3
-        ), $res->getMonthOverflow());
+        ), $res->monthOverflow());
     }
 
     public function testSetGetMonthOverflowStrings()
@@ -72,7 +72,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(
             'left' => 3,
             'right' => 4
-        ), $res->getMonthOverflow());
+        ), $res->monthOverflow());
     }
 
     public function testSetGetMonthOverflowFloats()
@@ -83,7 +83,7 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(
             'left' => 3,
             'right' => 4
-        ), $res->getMonthOverflow());
+        ), $res->monthOverflow());
     }
 
     /*

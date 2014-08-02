@@ -66,7 +66,7 @@ class MonthResolution implements ResolutionInterface
      *
      * @return  DateTime
      */
-    public function getDateTime()
+    public function dateTime()
     {
         return $this->currentDate;
     }
@@ -96,7 +96,7 @@ class MonthResolution implements ResolutionInterface
      *
      * @return  array
      */
-    public function getMonthOverflow()
+    public function monthOverflow()
     {
         return $this->monthOverflow;
     }
