@@ -113,6 +113,21 @@ class MonthResolutionTest extends PHPUnit_Framework_TestCase
     {
         $res = new MonthResolution(1, 1);
         $res->setDateTime(new DateTime('2014-05-15'));
-        $res->build();
+        $result = $res->build();
+
+        $this->assertCount(3, $result);
+        $this->assertEquals('April 2014', $result[0]->title('F Y'));
+        $this->assertEquals('May 2014', $result[1]->title('F Y'));
+        $this->assertEquals('June 2014', $result[2]->title('F Y'));
+    }
+
+    public function testBuildCellsOnlyThisMonth()
+    {
+        $res = new MonthResolution();
+        $res->setDateTime(new DateTime('2014-05-15'));
+        $result = $res->build();
+
+        $this->assertCount(1, $result);
+        $this->assertEquals('May 2014', $result[0]->title('F Y'));
     }
 }
