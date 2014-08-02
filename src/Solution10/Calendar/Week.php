@@ -24,7 +24,7 @@ class Week
     protected $weekEnd;
 
     /**
-     * @var     DateTime    Containing month (optional)
+     * @var     Month    Containing month (optional)
      */
     protected $containingMonth = null;
 
@@ -80,10 +80,10 @@ class Week
      * Sets the containing month of this week. Used to work out if
      * days are in overflow or not. Totally optional.
      *
-     * @param   DateTime    $containingMonth
+     * @param   Month   $containingMonth
      * @return  $this
      */
-    public function setContainingMonth(DateTime $containingMonth)
+    public function setContainingMonth(Month $containingMonth)
     {
         $this->containingMonth = clone $containingMonth;
         return $this;
@@ -92,7 +92,7 @@ class Week
     /**
      * Gets the containing month
      *
-     * @return  DateTime
+     * @return  Month
      */
     public function containingMonth()
     {
@@ -112,7 +112,10 @@ class Week
             for ($i = 0; $i < 7; $i ++) {
                 $thisDay = new Day($clonedStart);
 
-                if ($this->containingMonth && $this->containingMonth->format('m') != $clonedStart->format('m')) {
+                if (
+                    $this->containingMonth
+                    && $this->containingMonth->firstDay()->format('m') != $clonedStart->format('m')
+                ) {
                     $thisDay->setIsOverflow(true);
                 }
 

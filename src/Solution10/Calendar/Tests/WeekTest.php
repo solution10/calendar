@@ -4,6 +4,7 @@ namespace Solution10\Calendar\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Week;
+use Solution10\Calendar\Month;
 use DateTime;
 
 /**
@@ -33,9 +34,9 @@ class WeekTest extends PHPUnit_Framework_TestCase
     public function testGetSetContainingMonth()
     {
         $w = new Week(new DateTime('2014-04-17'));
-        $month = new DateTime('2014-04-01');
+        $month = new Month(new DateTime('2014-04-01'));
         $this->assertEquals($w, $w->setContainingMonth($month));
-        $this->assertEquals('2014-04-01', $w->containingMonth()->format('Y-m-d'));
+        $this->assertEquals('2014-04-01', $w->containingMonth()->firstDay()->format('Y-m-d'));
     }
 
     /*
@@ -150,7 +151,7 @@ class WeekTest extends PHPUnit_Framework_TestCase
     public function testGetDaysOverflowsFront()
     {
         $w = new Week(new DateTime('2014-07-02'));
-        $w->setContainingMonth(new DateTime('2014-07-02'));
+        $w->setContainingMonth(new Month(new DateTime('2014-07-02')));
         $days = $w->days();
 
         $this->assertTrue($days[0]->isOverflow());
@@ -165,7 +166,7 @@ class WeekTest extends PHPUnit_Framework_TestCase
     public function testGetDaysOverflowsRear()
     {
         $w = new Week(new DateTime('2014-07-02'));
-        $w->setContainingMonth(new DateTime('2014-06-30'));
+        $w->setContainingMonth(new Month(new DateTime('2014-06-30')));
         $days = $w->days();
 
         $this->assertFalse($days[0]->isOverflow());

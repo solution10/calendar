@@ -148,7 +148,7 @@ class Month
             while ($keepWeeking) {
                 $candidateWeek = new Week($weekPoint, $startDay);
                 if ($candidateWeek->weekStart() <= $this->lastDay()) {
-                    $candidateWeek->setContainingMonth($this->firstDay());
+                    $candidateWeek->setContainingMonth($this);
                     $this->weeks[$startDay][] = $candidateWeek;
                     $weekPoint->modify('+1 week');
                 } else {
