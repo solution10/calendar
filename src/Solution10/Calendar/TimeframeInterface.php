@@ -15,7 +15,9 @@ use DateTime;
  * you would use one of them, but this is here in case you want something
  * custom.
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 interface TimeframeInterface
 {

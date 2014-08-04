@@ -12,7 +12,9 @@ use DateTime;
  * and when it occurs. You'll want a lot more than this in your events
  * no doubt, but S10 tries to keep things simple :)
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 interface EventInterface
 {

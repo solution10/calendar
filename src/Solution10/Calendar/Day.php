@@ -4,6 +4,15 @@ namespace Solution10\Calendar;
 
 use DateTime;
 
+/**
+ * Class Day
+ *
+ * Represents a Day in the Calendar.
+ *
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
+ */
 class Day implements TimeframeInterface
 {
     /**
@@ -79,6 +88,4 @@ class Day implements TimeframeInterface
     {
         return new DateTime($this->today->format('Y-m-d 23:59:59'));
     }
-
-
 }

@@ -7,7 +7,7 @@ use Solution10\Calendar\ResolutionInterface;
 use Solution10\Calendar\Month;
 
 /**
- * Class Month
+ * Class MonthResolution
  *
  * The month resolution shows a calendar that arranges the weeks by row,
  * the days by column and can optionally show multiple months at once:
@@ -16,7 +16,9 @@ use Solution10\Calendar\Month;
  *  | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
  *  | 8 | 9 | ... etc
  *
- * @package Solution10\Calendar\Resolution
+ * @package     Solution10\Calendar\Resolution
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class MonthResolution implements ResolutionInterface
 {

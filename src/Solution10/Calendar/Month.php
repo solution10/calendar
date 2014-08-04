@@ -10,7 +10,9 @@ use DateTime;
  * A class that represents a month in a given year. Can tell you all sorts of wonderful
  * things about that month like days, what day it started on etc.
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class Month implements TimeframeInterface
 {

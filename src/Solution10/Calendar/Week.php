@@ -9,7 +9,9 @@ use DateTime;
  *
  * Represents a week, either on its own or as a part of a monthly calendar.
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class Week implements TimeframeInterface
 {

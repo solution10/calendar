@@ -4,6 +4,15 @@ namespace Solution10\Calendar;
 
 use DateTime;
 
+/**
+ * Interface ResolutionInterface
+ *
+ * Calendar Resolutions must implement this interface.
+ *
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
+ */
 interface ResolutionInterface
 {
     /**

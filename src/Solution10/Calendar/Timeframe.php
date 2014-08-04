@@ -4,6 +4,15 @@ namespace Solution10\Calendar;
 
 use DateTime;
 
+/**
+ * Class Timeframe
+ *
+ * This is an example implementation of a Timeframe. You can use this to define
+ * boundaries for event fetching, or you can implement your own TimeframeInterface
+ * implementation.
+ *
+ * @package Solution10\Calendar
+ */
 class Timeframe implements TimeframeInterface
 {
     /**

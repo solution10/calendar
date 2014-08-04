@@ -11,7 +11,9 @@ use Solution10\Calendar\Week;
  *
  * Displays only a single week of the Calendar. Useful for meeting views.
  *
- * @package Solution10\Calendar\Resolution
+ * @package     Solution10\Calendar\Resolution
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class WeekResolution implements ResolutionInterface
 {

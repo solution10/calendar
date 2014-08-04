@@ -11,7 +11,9 @@ use Solution10\Calendar\Exception\Date as DateException;
  *
  * A tiny and simple class that represents a year.
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class Year implements TimeframeInterface
 {

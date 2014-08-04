@@ -12,7 +12,9 @@ use Solution10\Calendar\Exception\Event as EventException;
  * use this in your apps, but it isn't super powerful. You'll either want
  * to subclass this, or rewrite to your needs.
  *
- * @package Solution10\Calendar
+ * @package     Solution10\Calendar
+ * @author      Alex Gisby <alex@solution10.com>
+ * @license     MIT
  */
 class Event implements EventInterface
 {
