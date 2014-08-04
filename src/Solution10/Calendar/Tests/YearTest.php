@@ -42,4 +42,15 @@ class YearTest extends PHPUnit_Framework_TestCase
         $y = new Year(2012);
         $this->assertTrue($y->isLeapYear());
     }
+
+    /*
+     * ------------ Testing Timeframe ------------------
+     */
+
+    public function testTimeframeImplementation()
+    {
+        $y = new Year(2014);
+        $this->assertEquals('2014-01-01 00:00:00', $y->start()->format('Y-m-d H:i:s'));
+        $this->assertEquals('2014-12-31 23:59:59', $y->end()->format('Y-m-d H:i:s'));
+    }
 }

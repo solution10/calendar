@@ -38,4 +38,11 @@ class DayTest extends PHPUnit_Framework_TestCase
         $d->setIsOverflow(true);
         $this->assertTrue($d->isOverflow());
     }
+
+    public function testTimeframeImplementation()
+    {
+        $d = new Day(new DateTime('2014-04-16'));
+        $this->assertEquals('2014-04-16 00:00:00', $d->start()->format('Y-m-d H:i:s'));
+        $this->assertEquals('2014-04-16 23:59:59', $d->end()->format('Y-m-d H:i:s'));
+    }
 }

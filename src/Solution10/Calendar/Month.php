@@ -12,7 +12,7 @@ use DateTime;
  *
  * @package Solution10\Calendar
  */
-class Month
+class Month implements TimeframeInterface
 {
     /**
      * @var     DateTime    DateTime for the first day of the month.
@@ -169,5 +169,29 @@ class Month
     public function title($format)
     {
         return $this->firstDay()->format($format);
+    }
+
+    /*
+     * ----------------- Implementing Timeframe ------------------
+     */
+
+    /**
+     * The start of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function start()
+    {
+        return new DateTime($this->firstDay()->format('Y-m-d 00:00:00'));
+    }
+
+    /**
+     * The end of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function end()
+    {
+        return new DateTime($this->lastDay()->format('Y-m-d 23:59:59'));
     }
 }

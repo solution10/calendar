@@ -177,4 +177,15 @@ class WeekTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($days[5]->isOverflow());
         $this->assertTrue($days[6]->isOverflow());
     }
+
+    /*
+     * ------------ Testing Timeframe ------------------
+     */
+
+    public function testTimeframeImplementation()
+    {
+        $w = new Week(new DateTime('2014-04-16'));
+        $this->assertEquals('2014-04-14 00:00:00', $w->start()->format('Y-m-d H:i:s'));
+        $this->assertEquals('2014-04-20 23:59:59', $w->end()->format('Y-m-d H:i:s'));
+    }
 }

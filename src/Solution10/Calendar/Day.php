@@ -4,7 +4,7 @@ namespace Solution10\Calendar;
 
 use DateTime;
 
-class Day
+class Day implements TimeframeInterface
 {
     /**
      * @var     DateTime   The datetime of this day
@@ -56,4 +56,29 @@ class Day
     {
         return $this->isOverflow;
     }
+
+    /*
+     * ------------------- Timeframe Interface -----------------
+     */
+    /**
+     * The start of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function start()
+    {
+        return new DateTime($this->today->format('Y-m-d 00:00:00'));
+    }
+
+    /**
+     * The end of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function end()
+    {
+        return new DateTime($this->today->format('Y-m-d 23:59:59'));
+    }
+
+
 }

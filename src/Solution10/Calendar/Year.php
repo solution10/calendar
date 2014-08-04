@@ -13,7 +13,7 @@ use Solution10\Calendar\Exception\Date as DateException;
  *
  * @package Solution10\Calendar
  */
-class Year
+class Year implements TimeframeInterface
 {
     /**
      * @var     DateTime    First of Jan that year.
@@ -63,5 +63,29 @@ class Year
     public function isLeapYear()
     {
         return (bool)$this->newYearsDay->format('L');
+    }
+
+    /*
+     * ----------------- Implementing Timeframe ------------------
+     */
+
+    /**
+     * The start of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function start()
+    {
+        return new DateTime($this->newYearsDay->format('Y-01-01 00:00:00'));
+    }
+
+    /**
+     * The end of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function end()
+    {
+        return new DateTime($this->newYearsDay->format('Y-12-31 23:59:59'));
     }
 }

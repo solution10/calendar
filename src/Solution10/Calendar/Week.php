@@ -11,7 +11,7 @@ use DateTime;
  *
  * @package Solution10\Calendar
  */
-class Week
+class Week implements TimeframeInterface
 {
     /**
      * @var     DateTime    Start of the week
@@ -124,5 +124,29 @@ class Week
             }
         }
         return $this->days;
+    }
+
+    /*
+     * ----------------- Implementing Timeframe ------------------
+     */
+
+    /**
+     * The start of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function start()
+    {
+        return new DateTime($this->weekStart()->format('Y-m-d 00:00:00'));
+    }
+
+    /**
+     * The end of this timeframe.
+     *
+     * @return  DateTime
+     */
+    public function end()
+    {
+        return new DateTime($this->weekEnd()->format('Y-m-d 23:59:59'));
     }
 }

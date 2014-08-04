@@ -78,4 +78,15 @@ class MonthTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($june->weeks()));
         $this->assertCount(6, $june->weeks());
     }
+
+    /*
+     * ------------ Testing Timeframe ------------------
+     */
+
+    public function testTimeframeImplementation()
+    {
+        $m = new Month(new DateTime('2014-04-16'));
+        $this->assertEquals('2014-04-01 00:00:00', $m->start()->format('Y-m-d H:i:s'));
+        $this->assertEquals('2014-04-30 23:59:59', $m->end()->format('Y-m-d H:i:s'));
+    }
 }

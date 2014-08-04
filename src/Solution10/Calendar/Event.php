@@ -60,7 +60,7 @@ class Event implements EventInterface
                 EventException::INVALID_DATES
             );
         }
-        $this->start = $start;
+        $this->start = clone $start;
         return $this;
     }
 
@@ -91,7 +91,7 @@ class Event implements EventInterface
             );
         }
 
-        $this->end = $end;
+        $this->end = clone $end;
         return $this;
     }
 
