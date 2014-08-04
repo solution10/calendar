@@ -5,6 +5,7 @@ namespace Solution10\Calendar\Tests;
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Calendar;
 use Solution10\Calendar\Resolution\MonthResolution as MonthResolution;
+use Solution10\Calendar\Event;
 use DateTime;
 
 class CalendarTests extends PHPUnit_Framework_TestCase
@@ -54,6 +55,23 @@ class CalendarTests extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($c, $c->setResolution($res));
         $this->assertEquals($res, $c->resolution());
+    }
+
+    /*
+     * ---------------- Testing events ------------------------
+     */
+
+    public function testAddRetrieveEvents()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+        $this->assertEquals(array(), $c->events());
+
+        $event = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'));
+        $this->assertEquals($c, $c->addEvent($event));
+
+        $events = $c->events();
+        $this->assertCount(1, $events);
+        $this->assertEquals($event, $events[0]);
     }
 
     /*

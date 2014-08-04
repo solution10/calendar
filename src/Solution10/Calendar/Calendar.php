@@ -21,14 +21,14 @@ class Calendar
     protected $currentDateTime;
 
     /**
-     * @var     bool    Marks whether the calendar is set to a specific day or not. Used in rendering.
-     */
-    protected $specificDate = false;
-
-    /**
      * @var     ResolutionInterface     The Resolution for this calendar to work to
      */
     protected $resolution;
+
+    /**
+     * @var     EventInterface[]     Events that have been added to the calendar
+     */
+    protected $events = array();
 
     /**
      * You can pass the current date in here:
@@ -92,6 +92,32 @@ class Calendar
     public function resolution()
     {
         return $this->resolution;
+    }
+
+    /*
+     * --------------------- Events Functions --------------------
+     */
+
+    /**
+     * Adding an event to the calendar
+     *
+     * @param   EventInterface   $event  The event to add
+     * @return  $this
+     */
+    public function addEvent(EventInterface $event)
+    {
+        $this->events[] = $event;
+        return $this;
+    }
+
+    /**
+     * Returns all of the events for the calendar
+     *
+     * @return  EventInterface[]
+     */
+    public function events()
+    {
+        return $this->events;
     }
 
     /*
