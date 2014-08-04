@@ -6,7 +6,9 @@ use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Calendar;
 use Solution10\Calendar\Resolution\MonthResolution as MonthResolution;
 use Solution10\Calendar\Event;
+use Solution10\Calendar\Day;
 use DateTime;
+use Solution10\Calendar\Timeframe;
 
 class CalendarTests extends PHPUnit_Framework_TestCase
 {
@@ -72,6 +74,66 @@ class CalendarTests extends PHPUnit_Framework_TestCase
         $events = $c->events();
         $this->assertCount(1, $events);
         $this->assertEquals($event, $events[0]);
+    }
+
+    public function testEventsForTimeframe()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+
+        // These two events occur on the given day (deliberately out of order to check sorting)
+        $e1 = new Event('Team Meeting', new DateTime('2014-05-27 15:00:00'), new DateTime('2014-05-27 16:00:00'));
+        $e2 = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'));
+
+        // This event doesn't occur on the day
+        $e3 = new Event('Standup', new DateTime('2014-05-28 10:00:00'), new DateTime('2014-05-28 10:15:00'));
+
+        $c->addEvent($e1)->addEvent($e2)->addEvent($e3);
+
+        $day = new Day(new DateTime('2014-05-27'));
+        $events = $c->eventsForTimeframe($day);
+
+        $this->assertCount(2, $events);
+        $this->assertEquals($e2, $events[0]);
+        $this->assertEquals($e1, $events[1]);
+    }
+
+    public function testEventsForTimeframeEmpty()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+
+        // Add an event that doesn't actually occur on this day:
+        $e1 = new Event('Standup', new DateTime('2014-05-28 10:00:00'), new DateTime('2014-05-28 10:15:00'));
+        $c->addEvent($e1);
+
+        $day = new Day(new DateTime('2014-05-27'));
+        $events = $c->eventsForTimeframe($day);
+        $this->assertCount(0, $events);
+    }
+
+    public function testEventsStartBoundary()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+        $e1 = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'));
+        $c->addEvent($e1);
+
+        // This timeframe only contains the start, not the end of the event, but it should still be included:
+        $timeframe = new Timeframe(new DateTime('2014-05-27 09:55:00'), new DateTime('2014-05-27 10:10:00'));
+        $events = $c->eventsForTimeframe($timeframe);
+        $this->assertCount(1, $events);
+        $this->assertEquals($e1, $events[0]);
+    }
+
+    public function testEventsEndBoundary()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+        $e1 = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'));
+        $c->addEvent($e1);
+
+        // This timeframe only contains the end of the event, but it should still be included:
+        $timeframe = new Timeframe(new DateTime('2014-05-27 10:10:00'), new DateTime('2014-05-27 10:30:00'));
+        $events = $c->eventsForTimeframe($timeframe);
+        $this->assertCount(1, $events);
+        $this->assertEquals($e1, $events[0]);
     }
 
     /*

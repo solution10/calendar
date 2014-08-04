@@ -120,6 +120,35 @@ class Calendar
         return $this->events;
     }
 
+    /**
+     * Returns events for a given timeframe. Usually this is one of the
+     * built in types (Year, Month, Week, Day) or you can pass in a custom
+     * Timeframe instance if you're being fancy.
+     *
+     * The events will be sorted in Ascending order (earliest first)
+     *
+     * @param   TimeframeInterface   $timeframe
+     * @return  EventInterface[]
+     */
+    public function eventsForTimeframe(TimeframeInterface $timeframe)
+    {
+        $events = array();
+
+        foreach ($this->events as $event) {
+            // Check if the start occurs within the timeframe:
+            if ($event->start() >= $timeframe->start() && $event->start() <= $timeframe->end()) {
+                $events[$event->start()->getTimestamp()] = $event;
+            } elseif ($event->end() >= $timeframe->start() && $event->end() <= $timeframe->end()) {
+                $events[$event->start()->getTimestamp()] = $event;
+            }
+        }
+
+        // Sort by the keys and then return only the values:
+        ksort($events);
+
+        return array_values($events);
+    }
+
     /*
      * -------------------- Rendering Functions ------------------
      */
