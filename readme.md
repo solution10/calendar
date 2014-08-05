@@ -5,6 +5,10 @@ The Calendar component is a simple, but powerful package to help you in the rend
 [![Build Status](https://travis-ci.org/Solution10/calendar.svg?branch=master)](https://travis-ci.org/Solution10/calendar)
 [![Coverage Status](https://coveralls.io/repos/Solution10/calendar/badge.png)](https://coveralls.io/r/Solution10/calendar)
 
+[![Latest Stable Version](https://poser.pugx.org/solution10/calendar/v/stable.svg)](https://packagist.org/packages/solution10/calendar)
+[![Total Downloads](https://poser.pugx.org/solution10/calendar/downloads.svg)](https://packagist.org/packages/solution10/calendar)
+[![License](https://poser.pugx.org/solution10/calendar/license.svg)](https://packagist.org/packages/solution10/calendar)
+
 ## Features
 
 - No dependancies
