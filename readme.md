@@ -85,11 +85,21 @@ do the rendering yourself.
 
 ## Further Reading
 
+### Userguide
+
 For more information on creating Calendars, see the [Calendars Section](Calendars).
 
 If you want to know more about Resolutions, check out the [Resolutions Section](Resolutions).
 
 Want to see how you can add Events to your calendars? You'll be wanting the [Events Section](Events).
+
+### API Docs
+
+From a checkout of this project, run:
+
+    $ make
+
+This will create an api/ folder for you to peruse.
 
 ## PHP Requirements
 
