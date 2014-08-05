@@ -91,11 +91,11 @@ do the rendering yourself.
 
 ### Userguide
 
-For more information on creating Calendars, see the [Calendars Section](wiki/Calendars).
+For more information on creating Calendars, see the [Calendars Section](http://github.com/solution10/calendar/wiki/Calendars).
 
-If you want to know more about Resolutions, check out the [Resolutions Section](wiki/Resolutions).
+If you want to know more about Resolutions, check out the [Resolutions Section](http://github.com/solution10/calendar/wiki/Resolutions).
 
-Want to see how you can add Events to your calendars? You'll be wanting the [Events Section](wiki/Events).
+Want to see how you can add Events to your calendars? You'll be wanting the [Events Section](http://github.com/solution10/calendar/wiki/Events).
 
 ### API Docs
 
