@@ -17,12 +17,12 @@
         "phpunit/phpunit": "4.1.*",
         "squizlabs/php_codesniffer": "1.*",
         "satooshi/php-coveralls": "dev-master",
-        "nette/nette": "~2.1.3",
-        "apigen/apigen": "~2.8.0"
+        "apigen/apigen": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Solution10\\Calendar": "src"
+        "psr-4": {
+            "Solution10\\Calendar\\": "src",
+            "Solution10\\Calendar\\Tests\\": "tests"
         }
     }
 }

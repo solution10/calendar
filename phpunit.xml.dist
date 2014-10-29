@@ -3,7 +3,7 @@
     xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/3.7/phpunit.xsd"
     backupGlobals="true"
     backupStaticAttributes="false"
-    bootstrap="./src/Solution10/Calendar/Tests/bootstrap.php"
+    bootstrap="./tests/bootstrap.php"
     colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
@@ -12,15 +12,14 @@
     strict="false"
     verbose="false">
 
-	<testsuites>
-		<testsuite name="Calendar Tests">
-			<directory>./src/Solution10/Calendar/Tests</directory>
-		</testsuite>
-	</testsuites>
+    <testsuites>
+        <testsuite name="Calendar Tests">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix=".php">./src/Solution10/Calendar/Tests</directory>
-            <directory>./vendor</directory>
-        </blacklist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
     </filter>
 </phpunit>

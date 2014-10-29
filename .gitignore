@@ -4,8 +4,8 @@
 # IDE crap
 .idea
 
-# Generated folders
+# Generated files/folders
 api/
 report/
 vendor/
-
+apigen.neon
