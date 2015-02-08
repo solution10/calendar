@@ -24,7 +24,7 @@ Installation is via composer, in the usual manner:
 
 ```json
 {
-    "require" {
+    "require": {
         "solution10/calendar": "1.*"
     }
 }
