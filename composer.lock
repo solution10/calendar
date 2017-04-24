@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "55a0549d84d26dce40708c2ab16ce34b",
+    "content-hash": "08cb54c27d48b1f8050929e7096603fc",
     "packages": [],
     "packages-dev": [
         {
@@ -1020,16 +1020,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "1.5.6",
+            "version": "1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "6f3e42d311b882b25b4d409d23a289f4d3b803d5"
+                "reference": "5d973e59cf58a0c847f298de84374c96b42b17b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6f3e42d311b882b25b4d409d23a289f4d3b803d5",
-                "reference": "6f3e42d311b882b25b4d409d23a289f4d3b803d5",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/5d973e59cf58a0c847f298de84374c96b42b17b3",
+                "reference": "5d973e59cf58a0c847f298de84374c96b42b17b3",
                 "shasum": ""
             },
             "require": {
@@ -1091,7 +1091,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2014-12-04T22:32:15+00:00"
+            "time": "2014-09-25T03:33:46+00:00"
         },
         {
             "name": "symfony/yaml",
