@@ -3,8 +3,6 @@
 The Calendar component is a simple, but powerful package to help you in the rendering of, well, Calendars!
 
 [![Build Status](https://travis-ci.org/Solution10/calendar.svg?branch=master)](https://travis-ci.org/Solution10/calendar)
-[![Coverage Status](https://coveralls.io/repos/Solution10/calendar/badge.png)](https://coveralls.io/r/Solution10/calendar)
-
 [![Latest Stable Version](https://poser.pugx.org/solution10/calendar/v/stable.svg)](https://packagist.org/packages/solution10/calendar)
 [![Total Downloads](https://poser.pugx.org/solution10/calendar/downloads.svg)](https://packagist.org/packages/solution10/calendar)
 [![License](https://poser.pugx.org/solution10/calendar/license.svg)](https://packagist.org/packages/solution10/calendar)
@@ -25,7 +23,7 @@ Installation is via composer, in the usual manner:
 ```json
 {
     "require": {
-        "solution10/calendar": "1.*"
+        "solution10/calendar": "^1.0"
     }
 }
 ```
@@ -96,14 +94,6 @@ For more information on creating Calendars, see the [Calendars Section](http://g
 If you want to know more about Resolutions, check out the [Resolutions Section](http://github.com/solution10/calendar/wiki/Resolutions).
 
 Want to see how you can add Events to your calendars? You'll be wanting the [Events Section](http://github.com/solution10/calendar/wiki/Events).
-
-### API Docs
-
-From a checkout of this project, run:
-
-    $ make
-
-This will create an api/ folder for you to peruse.
 
 ## PHP Requirements
 
