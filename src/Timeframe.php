@@ -64,4 +64,32 @@ class Timeframe implements TimeframeInterface
     {
         return $this->end;
     }
+
+    /**
+     * Returns whether a timeframe contains a given date.
+     *
+     * @param   \DateTime   $dt
+     * @return  bool
+     */
+    public function contains(\DateTime $dt)
+    {
+        return ($this->start <= $dt && $this->end >= $dt);
+    }
+
+    /**
+     * Returns whether this timeframe intersects with another timeframe; some part of this timeframe
+     * overlaps with the given timeframe.
+     *
+     * @param   TimeframeInterface  $frame
+     * @return  bool
+     */
+    public function intersects(TimeframeInterface $frame)
+    {
+        return
+            // Checks intersections within:
+            ($this->contains($frame->start()) || $this->contains($frame->end()))
+            // Checks full overlaps:
+            || ($frame->start() <= $this->start && $frame->end() >= $this->end)
+        ;
+    }
 }
