@@ -110,6 +110,15 @@ class Calendar
         return $this;
     }
 
+    public function addEvents(array $events)
+    {
+        $this->events = array_filter($events, function($event) {
+            return $event instanceof EventInterface;
+        });
+
+        return $this;
+    }
+
     /**
      * Returns all of the events for the calendar
      *
