@@ -110,11 +110,21 @@ class Calendar
         return $this;
     }
 
+    /**
+     * Add an array of EventInterface objects at once
+     *
+     * @param array $events The array of EventInterface objects
+     * @return $this
+     */
     public function addEvents(array $events)
     {
-        $this->events = array_filter($events, function($event) {
+        $filteredEvents = array_filter($events, function($event) {
             return $event instanceof EventInterface;
         });
+
+        array_map(function($event) {
+            $this->addEvent($event);
+        }, $filteredEvents);
 
         return $this;
     }
