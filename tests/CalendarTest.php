@@ -123,7 +123,6 @@ class CalendarTests extends PHPUnit_Framework_TestCase
 
     public function testAddMultipleEventsAtOnceFilterOutValuesThatDoesNotAdhereToTheEventInterface()
     {
-        // Filter out any events that do not adhere to the EventInterface
         $c = new Calendar(new DateTime('2014-05-27'));
 
         $this->assertCount(0, $c->events());
