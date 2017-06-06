@@ -111,6 +111,22 @@ class Calendar
     }
 
     /**
+     * Add an array of EventInterface objects at once
+     *
+     * @param array $events The array of EventInterface objects
+     * @return $this
+     */
+    public function addEvents(array $events)
+    {
+        foreach ($events as $event) {
+            if ($event instanceof EventInterface) {
+                $this->addEvent($event);
+            }
+        }
+        return $this;
+    }
+
+    /**
      * Returns all of the events for the calendar
      *
      * @return  EventInterface[]

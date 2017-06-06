@@ -4,11 +4,13 @@ namespace Solution10\Calendar\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Solution10\Calendar\Calendar;
+use Solution10\Calendar\EventInterface;
 use Solution10\Calendar\Resolution\MonthResolution as MonthResolution;
 use Solution10\Calendar\Event;
 use Solution10\Calendar\Day;
 use DateTime;
 use Solution10\Calendar\Timeframe;
+use stdClass;
 
 class CalendarTests extends PHPUnit_Framework_TestCase
 {
@@ -74,6 +76,69 @@ class CalendarTests extends PHPUnit_Framework_TestCase
         $events = $c->events();
         $this->assertCount(1, $events);
         $this->assertEquals($event, $events[0]);
+        $this->assertInstanceOf(EventInterface::class, $events[0]);
+    }
+
+    public function testAddMultipleEventsAtOnce()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+        $this->assertEquals(array(), $c->events());
+
+        $events = array(
+            new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+            new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+        );
+
+        $c->addEvents($events);
+
+        $this->assertCount(2, $c->events());
+        $this->assertInstanceOf(EventInterface::class, $c->events()[0]);
+    }
+
+    public function testAddMultipleEventsAppendsToExistingEvents()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+
+        $e1 = new Event('Team Meeting', new DateTime('2014-05-27 15:00:00'), new DateTime('2014-05-27 16:00:00'));
+        $e2 = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'));
+
+        // This event doesn't occur on the day
+        $e3 = new Event('Standup', new DateTime('2014-05-28 10:00:00'), new DateTime('2014-05-28 10:15:00'));
+
+        $c->addEvent($e1)
+            ->addEvent($e2)
+            ->addEvent($e3);
+
+        $this->assertCount(3, $c->events());
+
+        $events = array(
+            new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+            new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+        );
+
+        $c->addEvents($events);
+
+        $this->assertCount(5, $c->events());
+    }
+
+    public function testAddMultipleEventsAtOnceFilterOutValuesThatDoesNotAdhereToTheEventInterface()
+    {
+        $c = new Calendar(new DateTime('2014-05-27'));
+
+        $this->assertCount(0, $c->events());
+
+        $events2 = [
+            0 => new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+            1 => new StdClass('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+            2 => 'kjhdfkjshdf',
+            3 => [],
+            4 => 0
+        ];
+
+        $c->addEvents($events2);
+
+        $this->assertCount(1, $c->events());
+        $this->assertInstanceOf(EventInterface::class, $c->events()[0]);
     }
 
     public function testEventsForTimeframe()

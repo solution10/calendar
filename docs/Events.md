@@ -35,6 +35,19 @@ $e = new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('201
 $c->addEvent($e);
 ```
 
+You can even add muliple events at once:
+
+```php
+$c = new Calendar(new DateTime('2014-05-27'));
+$e = [
+  new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00')),
+  new Event('Standup', new DateTime('2014-05-27 10:00:00'), new DateTime('2014-05-27 10:15:00'))
+];
+$c->addEvents($e);
+```
+
+`addEvents` method will automatically filter out values in the array that does not adhere to the EventInterface. 
+
 ## Fetching Events
 
 You can pull all of the events registered to the Calendar like so:
