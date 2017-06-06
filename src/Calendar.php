@@ -118,14 +118,11 @@ class Calendar
      */
     public function addEvents(array $events)
     {
-        $filteredEvents = array_filter($events, function($event) {
-            return $event instanceof EventInterface;
-        });
-
-        array_map(function($event) {
-            $this->addEvent($event);
-        }, $filteredEvents);
-
+        foreach ($events as $event) {
+            if ($event instanceof EventInterface) {
+                $this->addEvent($event);
+            }
+        }
         return $this;
     }
 
